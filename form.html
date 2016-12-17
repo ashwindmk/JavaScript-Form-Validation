@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+
+    <style type="text/css">
+
+        .error
+        {
+            color: red;
+            font-size: 10px;
+            visibility: hidden;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+
+        function validate()
+        {
+            // Error flag
+            var error = 0;
+
+            // Name
+            var name = document.getElementById("name").value;
+            if( name === "") {
+                //document.getElementById("errname").setAttribute("style", "visibility: visible");
+                document.getElementById("errname").style.visibility = "visible";
+                error = 1;
+            } else {
+                document.getElementById("errname").style.visibility = "hidden";
+            }
+
+            // Email
+            var email = document.getElementById("email").value;
+            if( email === "") {
+                document.getElementById("erremail").style.visibility = "visible";
+                error = 1;
+            } else {
+                document.getElementById("erremail").style.visibility = "hidden";
+            }
+
+            // Gender
+            var gender = document.employee.gender;
+            var checkFlag = 0;
+            for( var i in gender ) {
+                if( gender[i].checked ) {
+                    checkFlag = 1;
+                }
+            }
+            if( checkFlag == 0 ) {
+                document.getElementById("errgender").style.visibility = "visible";
+                error = 1;
+            } else {
+                document.getElementById("errgender").style.visibility = "hidden";
+            }
+
+            // Mobile
+            var mobile = document.getElementById("mobile").value;
+            if( mobile == "" ) {
+                document.getElementById("errmobile").style.visibility = "visible";
+                error = 1;
+            } else {
+                document.getElementById("errmobile").style.visibility = "hidden";
+            }
+
+            // Return
+            if( error == 0 ) {
+                return true;
+            }
+
+            return false;
+        }
+
+    </script>
+</head>
+<body>
+    <div id="body-wrapper">
+
+        <form action="done.html" id="employee" name="employee" method="POST" onsubmit="return validate();">
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" id="name" name="name"></td>
+                    <td><span id="errname" class="error">This field is required</span></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" id="email" name="email"></td>
+                    <td><span id="erremail" class="error">This field is required</span></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <input type="radio" id="male" name="gender" value="Male">Male
+                        <input type="radio" id="female" name="gender" value="Female">Female
+                    </td>
+                    <td><span id="errgender" class="error">This field is required</span></td>
+                </tr>
+                <tr>
+                    <td>Mobile</td>
+                    <td><input type="number" id="mobile" name="mobile"></td>
+                    <td><span id="errmobile" class="error">This field is required</span></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="submit" value="Submit"></td>
+                    <td><input type="reset" name="reset"></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</body>
+</html>
